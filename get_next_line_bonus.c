@@ -75,8 +75,7 @@ static char	*read_line(int fd, char *buffer)
 	if (!str)
 		return (NULL);
 	nread = 1;
-	str[BUFFER_SIZE + 1] = '\0';
-	while (!(ft_strchr(buffer, '\n')) && nread != 0)
+	while (!(ft_strchr(buffer, '\n')) && nread > 0)
 	{
 		nread = read(fd, str, BUFFER_SIZE);
 		if (nread < 0)
@@ -99,6 +98,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free (buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
 	buffer[fd] = read_line(fd, buffer[fd]);

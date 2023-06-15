@@ -6,7 +6,7 @@
 /*   By: msoriano <msoriano@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:40:48 by msoriano          #+#    #+#             */
-/*   Updated: 2023/04/26 17:00:26 by msoriano         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:35:36 by msoriano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ static char	*read_line(int fd, char *buffer)
 	if (!str)
 		return (NULL);
 	nread = 1;
-	str[BUFFER_SIZE + 1] = '\0';
-	while (!(ft_strchr(buffer, '\n')) && nread != 0)
+	while (!(ft_strchr(buffer, '\n')) && nread > 0)
 	{
 		nread = read(fd, str, BUFFER_SIZE);
 		if (nread < 0)
